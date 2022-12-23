@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VNC</title>
+    <link rel="stylesheet" href="css/drv_recomm.css">
+    <style>
+      table,
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+
+  </head>
+
+  <body>
+<div class="a"><b>VNC Related</b></div>
+</br>
+  </br>
+</br>
+    <table>
+      <tr>
+        <th>-</th>
+        <th>Noida</th>
+        <th>SJ</th>
+        <th>DPC</th>
+</tr>
+
+
+
+      <!--Basic code-->
+      <tr>
+        <td>XTERM</td>
+        <td><xmp>
+          nedit ~/vnc.tcl
+          OR
+rlogin nflglnx01
+source ~aanurag/.cshrc
+setenv DISPLAY noivl-gmayank:1
+lsfenv
+> bsub -q interactive -R "OSNAME==Linux &&
+OSBIT==64 && CPUS>=4 && SPEED>=2000 &&
+OSREL==EE70" "xterm"
+
+        </xmp></td>
+<td><xmp>
+  /grid/sfi/farm/bin/bsub -q interactive -W 240:0 -R "OSNAME==Linux && OSBIT==64 && OSREL==EE70 span[hosts=1] rusage[mem=70000]" "xterm" &
+ (latest 12 april 22)
+
+  /grid/sfi/farm/bin/bsub -cluster sjlsf01 -q tfo-ndpc-int -n 16 -W 10000:00 -P
+  "EDI:20.1:GIGA:Debug" -R "OSNAME==Linux && (OSREL==EE70) rusage[mem=200000]
+  span[hosts=1]" "xterm"
+
+
+
+  OLDER METHOD:
+  -------
+  source ~njain/.cshrc
+setenv DISPLAY sjvnc...
+
+bsub -q rnd -P TEMPUS -W 1700:00 -R "rusage[mem=70000] select[OSNAME==Linux &&
+(OSREL==EE60 || OSREL==SLES11)] span[hosts=1]" "xterm"
+or
+/grid/sfi/farm/bin/bsub -cluster sjlsf01 -q rnd -R "OSREL==EE60 rusage[mem=70000]
+span[hosts=1]" -Is -P "CFMECO:13.1:RD:regTest" -W "1700:00" "xterm"
+
+source ~chetan/.cshrc (for license)
+------
+
+</xmp>  </td>
+<td>
+  <xmp>
+
+    /grid/sfi/farm/bin/bsub -cluster sjlsfec1 -q tfo-dpc-int -n 16 -W 480:00 -P ICADV:18.1:AE:GIGAdebug -R "OSNAME==Linux && OSBIT==64 && OSREL==EE70 && (CPUS>=8) rusage[mem=60000]" xterm
+#Make rusage 40000 in case don't get xterm.
+-----------------------------------------
+
+    xhost +
+source /grid/sfi/farm/sjlsfec1/conf/cshrc.lsf
+
+resize
+
+#setenv SFICLUSTER sjolec1;
+setenv SFICLUSTER sjlsfec1;
+
+setenv DISPLAY sjdpc-gmayank:1001
+unsetenv LS_COLORS
+
+
+Latest work as on 17 nov19
+/grid/sfi/farm/bin/bsub -cluster sjlsfvorm -q vormetric -m vor4 -P VORM -n 8
+-R "(OSREL==EE50 || OSREL==EE60) rusage[mem=500000]" -W "999:0" /usr/bin/xterm
+
+OR
+
+
+free -m
+open terminal
+xhost +
+2) open new terminal
+
+ssh vormlog3
+pw
+
+
+setenv DISPLAY sjdpc-gmayank:1001
+unsetenv LS_COLORS
+
+/grid/sfi/farm/bin/bsub -cluster sjolvorm -q vormetric -m vor4 -P VORM -n 4 -R
+“(OSREL==EE50 || OSREL==EE60) rusage[mem=40000]” -W “999:0” /usr/bin/xterm
+OR
+/grid/sfi/farm/bin/bsub -cluster sjolvorm -q vormetric -m vor4 -P VORM -n 8 -R
+"(OSREL==EE50 || OSREL==EE60) rusage[mem=500000]" -W "999:0" /usr/bin/xterm
+--------------------------------------------------------
+This works for me.    This is 500GB (total 5 zeroes)
+
+#Additional License Settings to launch Innovus:
+setenv LM_LICENSE_FILE “5280@sjdpc-lic1:5281@sjdpc-lic1:5280@sjdpc-lic2:5281@sjdpc-lic2”
+setenv CDS_LIC_FILE 5280@sjdpc-lic2
+
+
+  </xmp>
+</td>
+</tr>
+
+<!--Nav Code-->
+      <tr>
+        <td>SPACE</td>
+        <td>
+
+        </td>
+        <td><xmp>
+          Latest on 15 Nov 22(need to repeat every quarter)
+          cd /it/sjclapa03s2_scratch01/gmayank/expire_2022_12_30/mayank_scratch
+          or
+          cd /it/sjclapa06p6_scratch01/gmayank/voltus/voltus_2013/xp_23sep
+
+
+1) cd ~
+2) /grid/sfi/script/scratch mk -s 400 -k 8 -p 1 -dir mayank_scratch
+Error: failed to make sym link /home/gmayank/mayank_scratch to /it/sjclapa03s2_scratch01/gmayank/expire_2022_12_30/mayank_scratch File exists 0 at /grid/sfi/script/scratchLib.pm line 1688.
+3) cd /it/sjclapa03s2_scratch01/gmayank/expire_2022_12_30/mayank_scratch/
+4)  cp -R ../../expire_2022_09_30/mayank_scratch/* .
+
+
+
+
+
+
+cd /it/sjcpfb03_scratch03/njain/
+a2022_02_28_01_49_59_sjcvl-njain_697/
+nitin_run/mayankgupta
+
+cd /it/sjclapa06p6_scratch01/gmayank/
+
+OR
+
+cd ~
+/grid/sfi/script/scratch mk -s 400 -k 8 -p 1 -dir mayank_scratch
+/dpc/sfi/script/scratch
+Check this now:
+
+/it/sjclapa06p6_scratch01/gmayank/expire_2018_10_30/mayank_scratch
+400gb
+8week
+1 cpu
+
+Don’t afraid of below error: ijust go to that dir and you will see there is a directory.
+Error: failed to make sym link /home/gmayank/mayank_scratch_17apr to
+/it/sjclapa06p6_scratch01/gmayank/expire_2018_06_30/mayank_scratch_17apr Disk quota
+exceeded 0 at /grid/sfi/script/scratchLib.pm line 1575.
+
+
+vlsj-gmayank:1
+cd ~
+cd mayank_scratch
+
+
+[gmayank@sjfsb252 ~/mayank_scratch]$ pwd
+/it/sjisi04_scratch01/gmayank/expire_2016_06_30/mayank_scratch
+
+
+/grid/sfi/script/scratch mk -s xxx -k x -p xx -dir dirName
+- to request xxx GB space for x-week retention (combination of –k and
+–p determines mode 1 or mode 2 scratch)
+
+/grid/sfi/script/scratch use    - to check your utilization.
+/grid/sfi/script/scratch ls     - to check your active scratch dir list.
+/grid/sfi/script/scratch limit     - to see the limit of user.
+/grid/sfi/script/scratch adj -d dirname -s newsize    - to resize the scratch request
+/grid/sfi/script/scratch –help     -to show more usage info
+
+
+
+       </xmp></td>
+
+       <td>
+
+ cd /dpc_it/sjcladpc01p8_scratch04/gmayank/a2019_09_09_01_28_11_sjfhw901_13038/
+DPC_SCRATCH_MAYANK
+
+       </td>
+      </tr>
+
+
+      <tr>
+        <td>VNCSERVER</td>
+        <td>
+          <xmp>1) Type -putty
+          2) then host name
+          noi-gmayank/ noivl-gmayank/
+          and open
+
+          OR
+
+          1)type—cmd in window button
+          2)in black screen
+
+          telnet rlno-gmayank
+
+          #################################
+          vncserver -geometry 1920x1000 -depth 24
+          vncserver –kill  :2
+          </xmp>
+          </td>
+
+          <td>
+            <xmp>
+              1) Type -putty
+          2) then host name
+       sjcvl-gmayank
+          and open
+          vncserver -geometry 1920x1000 -depth 24
+          vncserver –kill  :2
+
+            VM : sj-gmayank
+Create VNC on this VM
+</xmp>
+          </td>
+      </tr>
+    </table>
+  </body>
+</html>
